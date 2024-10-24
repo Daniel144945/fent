@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gra w Dzika</title>
+  <link rel=stylesheet href="style.css">
+</head>
+<body>
+  <h2 id="h"> </h2>
+  <div id="gra">
+  <h1>Gra w Dzika</h1>
+  <img id="dzik" src="foto/dzik.jpg" alt="Dzik">
+  <img id="nein" src="foto/nein.jpg" alt="Nein!">
+  <div id="number">1</div>
+  <div id="timer">
+  </div>
+    <script>
+      let number = 1;
+      let startTime = Date.now();
+      const dzikImg = document.getElementById('dzik');
+      const neinImg = document.getElementById('nein');
+      const numberDiv = document.getElementById('number');
+      const timerDiv = document.getElementById('timer');
+      const graDiv = document.getElementById('gra');
+      const h = document.getElementById('h');
+      function updateNumber() {
+        number++;
+        numberDiv.textContent = number;
+        startTime = Date.now();
+      }
+      dzikImg.addEventListener('click', () => {
+        const currentTime = Date.now() - startTime;
+        timerDiv.textContent = `Time: ${currentTime} ms`;
+  
+        if (number % 7 === 0 || number.toString().includes('7')) {
+          updateNumber();
+        } else {
+          h.textContent = "GAME OVER";
+          graDiv.textContent = "";
+          
+        }
+      });
+      neinImg.addEventListener('click', () => {
+        const currentTime = Date.now() - startTime;
+        timerDiv.textContent = `Time: ${currentTime} ms`;
+  
+        if (number % 7 === 0 || number.toString().includes('7')) {
+          h.textContent = "GAME OVER";
+          graDiv.textContent = "";
+        } else {
+          updateNumber();
+        }
+      });
+    </script>
+</body>
+</html>
